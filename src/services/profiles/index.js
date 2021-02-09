@@ -7,11 +7,11 @@ const jwt = require("express-jwt");
 const auth = require("../middleware/auth");
 const mailgun = require("mailgun-js");
 const DOMAIN = process.env.MG_DOMAIN;
-const mg = mailgun({
-  apiKey: process.env.MG_APIKEY,
-  domain: process.env.MG_DOMAIN,
-});
-const senderEmail = "Mailgun Sandbox" + process.env.MG_EMAIL;
+// const mg = mailgun({
+//   apiKey: process.env.MG_APIKEY,
+//   domain: process.env.MG_DOMAIN,
+// });
+// const senderEmail = "Mailgun Sandbox" + process.env.MG_EMAIL;
 
 const ProfileSchema = require("../../model/profiles");
 
@@ -96,23 +96,23 @@ app.get("/:id/cv", async (req, res, next) => {
   }
 });
 
-app.post(
-  "/:id/img_upld",
-  uploadCloudinary.single("image"),
-  async (req, res, next) => {
-    try {
-      const addPicture = await ProfileSchema.findByIdAndUpdate(req.params.id, {
-        $set: {
-          image: req.file.path,
-        },
-      });
-      res.status(200).send(addPicture);
-    } catch (err) {
-      console.log(err);
-      next(err);
-    }
-  }
-);
+// app.post(
+//   "/:id/img_upld",
+//   uploadCloudinary.single("image"),
+//   async (req, res, next) => {
+//     try {
+//       const addPicture = await ProfileSchema.findByIdAndUpdate(req.params.id, {
+//         $set: {
+//           image: req.file.path,
+//         },
+//       });
+//       res.status(200).send(addPicture);
+//     } catch (err) {
+//       console.log(err);
+//       next(err);
+//     }
+//   }
+// );
 
 app
   .route("/:id")

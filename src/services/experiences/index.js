@@ -7,6 +7,7 @@ const ProfileSchema = require("../../model/profiles");
 const { APIError } = require("../../utils");
 const { validationResult } = require("express-validator");
 /// First one is done
+const user = []
 app.get("/:userName", async (req, res, next) => {
   try {
     const profile = await ProfileSchema.findOne({
